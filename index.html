@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Informática básica para 1.º de FP Básica</title>
+<meta name="google-site-verification" content="d5s-I1KC-qXc-g1W6hT6LCBn3xxCGgc09q7SE7tTnBU" />
+<meta name="google-site-verification" content="scerhWHUMlGjeU-lX9TtnSIwAj3NPkQ20EOnX_N7nv8" />
+<meta name="site-verification" content="idc-cQtFH4093vDNqdOn7CHKVbmZwME1H3UC" />
+<meta name="description" content="Tutoriales de informática básica: hardware, binario, Word, Excel, correo, redes y seguridad. Con preguntas de repaso.">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f1ff;--panel:#fff;--ink:#1c2740;--mute:#5b6784;--line:#d9d2f5;--acc:#5b3bff;--acc-ink:#fff;--hl:#ffe27a;--ok:#177a4f;--bad:#b3261e;--code:#ebe6ff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a2c;--panel:#1a2440;--ink:#e8edf9;--mute:#9aa6c4;--line:#2e3b60;--acc:#a08cff;--acc-ink:#0d1530;--hl:#5c4d12;--ok:#5fd39b;--bad:#ff8a80;--code:#243052}}
+:root[data-theme="dark"]{--bg:#121a2c;--panel:#1a2440;--ink:#e8edf9;--mute:#9aa6c4;--line:#2e3b60;--acc:#a08cff;--acc-ink:#0d1530;--hl:#5c4d12;--ok:#5fd39b;--bad:#ff8a80;--code:#243052}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.65 "Atkinson Hyperlegible",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;line-height:1.15;margin:0}
+header{color:#fff;padding:64px max(20px,calc((100% - 1040px)/2 + 20px)) 36px;background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(125deg,#5b21ff,#d61c9c 55%,#ff7a18);background-size:32px 32px,32px 32px,auto;border-bottom:4px solid #ffe27a}
+h1{font-size:clamp(2.6rem,8vw,4.8rem);font-weight:800;letter-spacing:-.03em;line-height:1}
+header p{max-width:52ch;color:#c9d3f2;margin:16px 0 0;font-size:1.1rem}
+.prog{max-width:420px;margin-top:22px}
+.prog .bar{height:8px;background:rgba(255,255,255,.18);border-radius:8px;overflow:hidden}
+.prog .bar i{display:block;height:100%;width:0;background:#ffe27a;transition:width .4s}
+#ptxt{display:block;margin-top:6px;font-size:.95rem;color:#c9d3f2}
+.layout{max-width:1040px;margin:0 auto;padding:16px 20px 60px;display:grid;grid-template-columns:230px 1fr;gap:28px}
+nav{position:sticky;top:16px;align-self:start;display:flex;flex-direction:column;gap:4px}
+nav button{font:inherit;text-align:left;background:none;border:0;border-left:4px solid var(--line);color:var(--ink);padding:9px 12px;cursor:pointer;border-radius:0 8px 8px 0}
+nav button:hover{background:var(--code)}
+nav button[aria-current="true"]{border-left-color:var(--acc);background:var(--code);font-weight:700}
+nav button{display:flex;align-items:center;gap:10px}
+.n{flex:none;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);font-size:.85rem;font-weight:700}
+nav button[aria-current="true"] .n{border-color:var(--acc);background:var(--acc);color:var(--acc-ink)}
+nav button.done .n{border-color:var(--ok);background:var(--ok);color:var(--bg)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+article{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,44px);min-width:0;box-shadow:0 10px 30px -14px rgba(16,26,61,.35);animation:in .3s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+article h2{font-size:clamp(2rem,5vw,2.8rem);margin-bottom:8px;letter-spacing:-.02em}
+article .lead{color:var(--mute);margin:0 0 24px;font-size:1.15rem;padding-bottom:18px;border-bottom:2px solid var(--line)}
+article h3{font-size:1.2rem;margin:26px 0 6px}
+p{margin:0 0 12px;max-width:68ch}
+ul,ol{max-width:66ch;padding-left:22px}li{margin-bottom:6px}
+mark{background:var(--hl);color:inherit;padding:0 3px;border-radius:3px}
+kbd,code{background:var(--code);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font:.9em ui-monospace,Consolas,monospace}
+.tip{border-left:4px solid var(--acc);background:var(--code);padding:10px 14px;border-radius:0 8px 8px 0;margin:16px 0;max-width:68ch}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:420px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+.tree{font:.95em ui-monospace,Consolas,monospace;background:var(--code);border-radius:8px;padding:12px 16px;white-space:pre;overflow-x:auto}
+.quiz{margin-top:30px;padding-top:20px;border-top:2px dashed var(--line)}
+.quiz h3{margin-top:0}
+.opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0;cursor:pointer;max-width:520px}
+.opt:hover:not(:disabled){border-color:var(--acc)}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--bg))}
+.opt.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,var(--bg))}
+.fb{min-height:1.6em;font-weight:700}
+.btn{font:inherit;font-weight:700;background:var(--acc);color:var(--acc-ink);border:0;border-radius:10px;padding:10px 18px;cursor:pointer}
+.pager{display:flex;justify-content:space-between;margin-top:26px;gap:10px}
+.pager .btn.alt{background:none;color:var(--ink);border:1.5px solid var(--line)}
+input[type=text]{font:inherit;width:100%;max-width:340px;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.meter{height:10px;max-width:340px;background:var(--line);border-radius:6px;margin:10px 0 4px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--bad);transition:width .25s,background .25s}
+.theme{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:16px;font:inherit;background:var(--panel);color:var(--ink);border:1.5px solid var(--line);border-radius:20px;padding:5px 12px;cursor:pointer}
+@media (max-width:760px){.layout{grid-template-columns:1fr}nav{position:static;flex-direction:row;overflow-x:auto;padding-bottom:6px}nav button{white-space:nowrap;border-left:0;border-bottom:4px solid var(--line);border-radius:8px 8px 0 0}nav button[aria-current="true"]{border-bottom-color:var(--acc)}}
+.tip{position:relative;border:0;border-radius:14px;padding:14px 16px 14px 52px;background:color-mix(in srgb,var(--hl) 45%,var(--panel))}
+.tip::before{content:"💡";position:absolute;left:16px;top:12px;font-size:1.4rem}
+.btn{border-radius:999px;padding:12px 24px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.pager .btn.alt{border-radius:999px}
+th{background:var(--code);font-family:"Bricolage Grotesque",sans-serif}
+th:first-child{border-radius:10px 0 0 10px}th:last-child{border-radius:0 10px 10px 0}
+h3{position:relative}
+.quiz{background:var(--code);border:0;border-radius:16px;padding:20px 22px;margin-top:34px}
+header{position:relative;overflow:hidden}
+header>*:not(canvas){position:relative}
+#rain{position:absolute;inset:0;width:100%;height:100%;opacity:.35;pointer-events:none}
+.shake{animation:sh .4s}
+@keyframes sh{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+header{animation:gridmove 14s linear infinite}
+@keyframes gridmove{to{background-position:32px 32px,32px 32px,0 0}}
+h1::after{content:"_";margin-left:.06em;color:#ffe27a;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+header::after{content:"";position:absolute;right:9%;top:28%;width:76px;height:76px;border:4px solid #ffe27a;border-radius:18px;opacity:.5;pointer-events:none;animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-22px) rotate(90deg)}}
+.prog .bar i{background:repeating-linear-gradient(45deg,#ffe27a 0 8px,#ffd24a 8px 16px);animation:stripes 1s linear infinite}
+@keyframes stripes{to{background-position:22.63px 0}}
+nav button{transition:transform .2s,background .2s}
+nav button:hover{transform:translateX(5px)}
+nav button[aria-current="true"] .n{animation:ring 2s ease-out infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--acc) 55%,transparent)}70%,100%{box-shadow:0 0 0 10px transparent}}
+mark{background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 0/0 100%;animation:sweep .9s .6s forwards}
+@keyframes sweep{to{background-size:100% 100%}}
+.tip::before{transform-origin:50% 0;animation:swing 3s ease-in-out infinite}
+@keyframes swing{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+kbd{box-shadow:0 3px 0 var(--line);transition:transform .1s,box-shadow .1s}
+kbd:hover{transform:translateY(3px);box-shadow:0 0 0 var(--line)}
+td{transition:background .2s}
+tr:hover td{background:var(--code)}
+.opt{transition:transform .15s,border-color .15s,background .15s}
+.opt:hover:not(:disabled){transform:translateX(6px)}
+#next{animation:glow 2.4s ease-out infinite}
+@keyframes glow{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--acc) 50%,transparent)}70%,100%{box-shadow:0 0 0 12px transparent}}
+.theme:hover{animation:wiggle .5s}
+@keyframes wiggle{25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+.gate{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px;background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(125deg,#5b21ff,#d61c9c 55%,#ff7a18);background-size:32px 32px,32px 32px,auto;overflow-y:auto;transition:opacity .5s,visibility .5s}
+.gate.out{opacity:0;visibility:hidden}
+.gcard{background:var(--panel);color:var(--ink);border-radius:22px;padding:26px;max-width:400px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,.4);animation:in .5s ease}
+.gcard h2{font-size:1.7rem;margin-bottom:8px}
+.gcard p{color:var(--mute);margin-bottom:14px}
+.pz{--img:radial-gradient(circle at 18% 30%,#ffe27a 0 20px,transparent 21px),radial-gradient(circle at 72% 68%,rgba(255,255,255,.4) 0 34px,transparent 35px),radial-gradient(circle at 88% 22%,#ff6b6b 0 14px,transparent 15px),repeating-linear-gradient(90deg,rgba(255,255,255,.14) 0 2px,transparent 2px 24px),linear-gradient(var(--a),#00c2ff,#7c3aed 45%,#ff2d87 80%,#ffb400);position:relative;width:100%;max-width:320px;height:160px;margin:0 auto;border-radius:14px;overflow:hidden;background-image:var(--img);background-size:var(--w) var(--h)}
+.hole,.piece{position:absolute;top:var(--py);width:56px;height:56px;border-radius:10px}
+.hole{left:var(--hx);background:rgba(0,0,0,.5);box-shadow:inset 0 0 0 2px rgba(255,255,255,.7)}
+.piece{left:0;z-index:2;background-image:var(--img);background-size:var(--w) var(--h);background-position:calc(var(--hx)*-1) calc(var(--py)*-1);box-shadow:0 0 0 2px #fff,0 4px 12px rgba(0,0,0,.45)}
+#prange{display:block;width:100%;max-width:320px;height:36px;margin:12px auto 0;accent-color:var(--acc);cursor:grab}
+.gcard .gmsg{min-height:1.6em;font-weight:700;color:var(--bad);margin:8px 0 0;text-align:center}
+.gcard .gmsg.ok{color:var(--ok)}
+@media (max-width:760px){header::after{display:none}}
+nav button{--c:#5b3bff}
+nav button:nth-child(4n+2){--c:#ff2d87}
+nav button:nth-child(4n+3){--c:#00a878}
+nav button:nth-child(4n+4){--c:#ff8a00}
+.n{border-color:var(--c)}
+nav button[aria-current="true"] .n{border-color:var(--c);background:var(--c);color:#fff}
+.btn{background:linear-gradient(90deg,#5b3bff,#ff2d87);color:#fff}
+article{box-shadow:inset 0 6px 0 #ff2d87,0 10px 30px -14px rgba(16,26,61,.35)}
+article h2{background:linear-gradient(90deg,var(--acc),#ff2d87);-webkit-background-clip:text;background-clip:text;color:transparent;width:fit-content;max-width:100%}
+.hinfo{display:inline-block;margin-top:18px;color:#fff;font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,.75);border-radius:999px;padding:6px 18px;transition:background .2s,color .2s}
+.hinfo:hover{background:#fff;color:#5b21ff}
+.info{max-width:1040px;margin:0 auto;padding:10px 20px 70px}
+.info h2{font-size:clamp(2rem,5vw,2.8rem);letter-spacing:-.02em}
+.ilead{color:var(--mute);margin:6px 0 20px;font-size:1.1rem}
+.igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.icard{background:var(--panel);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:18px;padding:18px 20px;transition:transform .2s,box-shadow .2s}
+.icard:hover{transform:translateY(-6px);box-shadow:0 14px 26px -12px var(--c)}
+.icard span{display:block;font-size:2rem;margin-bottom:4px}
+.icard h3{margin:0 0 6px;font-size:1.2rem;color:var(--c)}
+.icard p{margin:0;font-size:1rem}
+.c1{--c:#5b3bff}.c2{--c:#ff2d87}.c3{--c:#00a878}.c4{--c:#ff8a00}.c5{--c:#00a3d9}.c6{--c:#c026d3}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+.sndbar{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:250;display:flex;gap:8px}
+.sndbar button{font:inherit;font-weight:700;font-size:.9rem;background:var(--panel);color:var(--ink);border:2px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;box-shadow:0 6px 16px -8px rgba(0,0,0,.5);transition:transform .15s,opacity .2s}
+.sndbar button:hover{transform:translateY(-2px)}
+.sndbar button[aria-pressed="false"]{opacity:.6}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}#rain{display:none}mark{background-size:100% 100%}}
+</style>
+</head>
+<body>
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gt">
+  <div class="gcard">
+    <h2 id="gt">Resuelve el puzle para continuar</h2>
+    <p>Desliza la pieza hasta que encaje en el hueco.</p>
+    <div class="pz" id="pz"><div class="hole"></div><div class="piece" id="piece"></div></div>
+    <input type="range" id="prange" min="0" max="264" value="0" step="2" aria-label="Deslizar la pieza del puzle">
+    <p class="gmsg" id="gmsg" aria-live="polite"></p>
+  </div>
+</div>
+<button class="theme" id="theme" type="button">Modo oscuro</button>
+<header>
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <h1>Informática desde cero</h1>
+  <p>Dieciocho lecciones pensadas para 1.º de FP Básica: hardware, sistemas operativos, ofimática, redes, seguridad y buen uso digital. Cada una termina con una pregunta para comprobar lo aprendido.</p>
+  <div class="prog"><div class="bar"><i id="pbar"></i></div><span id="ptxt"></span></div>
+  <a class="hinfo" href="#info">Información</a>
+</header>
+<div class="layout">
+  <nav id="nav" aria-label="Lecciones"></nav>
+  <article id="lesson" aria-live="polite"></article>
+</div>
+<section class="info" id="info" aria-labelledby="it">
+  <h2 id="it">Información</h2>
+  <p class="ilead">Todo lo que necesitas saber antes de empezar.</p>
+  <div class="igrid">
+    <div class="icard c1"><span>🎯</span><h3>Para quién es</h3><p>Pensada para alumnado de 1.º de FP Básica que empieza con la informática, y sirve para cualquier persona principiante.</p></div>
+    <div class="icard c2"><span>📚</span><h3>Qué vas a aprender</h3><p>18 lecciones: hardware, sistemas operativos, ofimática, correo, redes, seguridad, la nube y buen uso digital.</p></div>
+    <div class="icard c3"><span>✅</span><h3>Cómo funciona</h3><p>Elige una lección del menú, léela y responde la pregunta final. Al acertar se marca como completada y sube la barra de progreso.</p></div>
+    <div class="icard c4"><span>💡</span><h3>Consejos de estudio</h3><p>Haz una lección al día, practica en tu ordenador lo que leas y repite las preguntas que falles.</p></div>
+    <div class="icard c5"><span>♿</span><h3>Accesibilidad</h3><p>Se puede usar con teclado. El botón de modo oscuro cambia los colores, y si tu dispositivo reduce el movimiento, las animaciones se desactivan. Los botones de abajo a la derecha silencian la música y los sonidos.</p></div>
+    <div class="icard c6"><span>🔒</span><h3>Privacidad</h3><p>No hay registro ni se piden datos personales. El progreso no se guarda: al recargar la página empiezas de cero.</p></div>
+  </div>
+</section>
+
+<div class="sndbar" role="group" aria-label="Sonido"><button type="button" id="bmus" aria-pressed="true">🎵 Música</button><button type="button" id="bfx" aria-pressed="true">🔊 Sonidos</button></div>
+
+<script>
+const L=[
+{t:"Qué es un ordenador",lead:"Todo ordenador se divide en dos mundos: lo que puedes tocar y lo que no.",
+body:`<h3>Hardware: las piezas físicas</h3>
+<ul><li><b>Procesador (CPU):</b> el cerebro. Hace los cálculos.</li>
+<li><b>Memoria RAM:</b> la mesa de trabajo. Guarda lo que usas ahora y se vacía al apagar.</li>
+<li><b>Almacenamiento (disco SSD/HDD):</b> el archivador. Guarda tus archivos aunque apagues.</li>
+<li><b>Periféricos:</b> teclado, ratón, pantalla, impresora.</li></ul>
+<h3>Software: los programas</h3>
+<p>Es la parte que no se toca. El <mark>sistema operativo</mark> (Windows, macOS, Linux, Android) es el programa principal: conecta el hardware con las aplicaciones como el navegador o el procesador de textos.</p>
+<div class="tip">Si el ordenador va lento con muchas pestañas abiertas, suele faltar RAM. Si te quedas sin espacio para fotos, falta almacenamiento.</div>`,
+q:"¿Qué parte del ordenador guarda tus archivos aunque lo apagues?",o:["La memoria RAM","El almacenamiento (SSD/HDD)","El procesador"],a:1},
+
+{t:"Archivos y carpetas",lead:"Ordenar bien desde el principio te ahorra buscar durante horas.",
+body:`<p>Un <b>archivo</b> es un documento, foto o canción. Una <b>carpeta</b> es un contenedor para agruparlos. Las carpetas pueden contener otras carpetas.</p>
+<div class="tree">Documentos/
+├── Trabajo/
+│   ├── informe-2026.docx
+│   └── presupuesto.xlsx
+└── Personal/
+    └── receta-paella.pdf</div>
+<h3>La extensión te dice el tipo</h3>
+<div class="wrap"><table><tr><th>Extensión</th><th>Tipo</th></tr>
+<tr><td><code>.docx</code></td><td>Documento de texto (Word)</td></tr>
+<tr><td><code>.xlsx</code></td><td>Hoja de cálculo (Excel)</td></tr>
+<tr><td><code>.jpg / .png</code></td><td>Imagen</td></tr>
+<tr><td><code>.pdf</code></td><td>Documento listo para leer o imprimir</td></tr>
+<tr><td><code>.zip</code></td><td>Varios archivos comprimidos en uno</td></tr></table></div>
+<h3>Buenos hábitos</h3>
+<ul><li>Usa nombres claros: <code>factura-luz-marzo.pdf</code> en vez de <code>doc1.pdf</code>.</li>
+<li>No guardes todo en el Escritorio.</li>
+<li>Al borrar, el archivo va a la papelera: aún puedes recuperarlo hasta vaciarla.</li></ul>`,
+q:"¿Qué tipo de archivo es «foto-playa.png»?",o:["Una imagen","Una hoja de cálculo","Un programa"],a:0},
+
+{t:"Internet y navegador",lead:"El navegador es la ventana; internet es todo lo que hay al otro lado.",
+body:`<p>Un <b>navegador</b> (Chrome, Firefox, Safari, Edge) es el programa que muestra páginas web. Cada página tiene una dirección o <b>URL</b>.</p>
+<h3>Partes de una dirección</h3>
+<p><code>https://www.ejemplo.com/noticias</code></p>
+<ul><li><code>https</code>: la conexión va cifrada. Busca el candado.</li>
+<li><code>www.ejemplo.com</code>: el dominio, el nombre del sitio.</li>
+<li><code>/noticias</code>: la sección dentro del sitio.</li></ul>
+<h3>Buscar mejor</h3>
+<ul><li>Usa palabras clave, no frases largas: <code>receta tortilla patatas</code>.</li>
+<li>Comillas para una frase exacta: <code>"error 404"</code>.</li>
+<li>Los primeros resultados marcados como «Anuncio» son publicidad.</li></ul>
+<div class="tip">Antes de escribir datos personales en una web, comprueba que la dirección empieza por <code>https</code> y que el dominio es el que esperas.</div>`,
+q:"¿Qué indica «https» al inicio de una dirección?",o:["Que la web es gratis","Que la conexión va cifrada","Que la página es nueva"],a:1},
+
+{t:"Contraseñas seguras",lead:"Una buena contraseña es larga, única y fácil de recordar para ti.",
+body:`<h3>Reglas básicas</h3>
+<ul><li>Más larga es mejor: apunta a <mark>14 caracteres o más</mark>.</li>
+<li>Una contraseña distinta para cada cuenta.</li>
+<li>Evita nombres, fechas de cumpleaños y <code>123456</code>.</li>
+<li>Usa una frase: <code>tres gatos cruzan el mar azul</code>.</li>
+<li>Activa la verificación en dos pasos cuando puedas.</li></ul>
+<h3>Pruébalo</h3>
+<p>Escribe una contraseña inventada (no la real). Nada sale de tu navegador.</p>
+<input type="text" id="pw" placeholder="Escribe aquí una prueba" autocomplete="off">
+<div class="meter"><i id="bar"></i></div><div id="pwt" class="fb"></div>
+<div class="tip">Un gestor de contraseñas guarda las claves por ti; solo recuerdas una maestra.</div>`,
+q:"¿Cuál es la mejor opción?",o:["La misma contraseña en todas las cuentas","Tu fecha de nacimiento","Una frase larga distinta en cada cuenta"],a:2,
+init(){const p=document.getElementById('pw'),b=document.getElementById('bar'),t=document.getElementById('pwt');
+p.addEventListener('input',()=>{const v=p.value;let s=0;if(v.length>=8)s++;if(v.length>=12)s++;if(v.length>=16)s++;if(/[a-z]/.test(v)&&/[A-Z]/.test(v))s++;if(/\d/.test(v))s++;if(/[^\w\s]|\s/.test(v))s++;if(/^(123|abc|password|qwerty)/i.test(v))s=Math.min(s,1);
+const n=v?Math.min(s,5):0,lab=["","Muy débil","Débil","Regular","Buena","Fuerte"],col=["","var(--bad)","var(--bad)","#c98a00","var(--ok)","var(--ok)"];
+b.style.width=n*20+"%";b.style.background=col[n];t.textContent=lab[n]+(v&&v.length<12?" · añade más caracteres":"")})}},
+
+{t:"Atajos de teclado",lead:"Cinco atajos que usarás cada día. En Mac, cambia Ctrl por Cmd.",
+body:`<div class="wrap"><table><tr><th>Atajo</th><th>Qué hace</th></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>C</kbd></td><td>Copiar lo seleccionado</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>V</kbd></td><td>Pegar</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>X</kbd></td><td>Cortar (copiar y quitar del origen)</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>Z</kbd></td><td>Deshacer el último cambio</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>S</kbd></td><td>Guardar el documento</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>F</kbd></td><td>Buscar una palabra en la página</td></tr>
+<tr><td><kbd>Alt</kbd> + <kbd>Tab</kbd></td><td>Cambiar entre programas abiertos</td></tr></table></div>
+<div class="tip">Si te equivocas en cualquier momento, prueba primero <kbd>Ctrl</kbd> + <kbd>Z</kbd>.</div>`,
+q:"¿Qué atajo deshace el último cambio?",o:["Ctrl + Z","Ctrl + S","Ctrl + V"],a:0},
+
+{t:"Copias de seguridad",lead:"Los discos fallan, los móviles se pierden. Tus archivos importantes necesitan una segunda casa.",
+body:`<h3>La regla 3-2-1</h3>
+<ul><li><b>3</b> copias de tus datos (el original y dos más).</li>
+<li><b>2</b> tipos de soporte distintos (por ejemplo, ordenador y disco externo).</li>
+<li><b>1</b> copia fuera de casa, como un servicio en la nube.</li></ul>
+<h3>Cómo empezar hoy</h3>
+<ol><li>Elige qué es insustituible: fotos, documentos, contratos.</li>
+<li>Cópialo a un disco externo o activa una copia automática en la nube.</li>
+<li>Repite cada cierto tiempo o déjalo automático.</li>
+<li>Comprueba una vez que puedes abrir los archivos copiados.</li></ol>
+<div class="tip">Una copia que nunca has probado a recuperar es solo una esperanza.</div>`,
+q:"Según la regla 3-2-1, ¿cuántas copias debe haber fuera de casa?",o:["Ninguna","Una","Tres"],a:1},
+
+{t:"Bits, bytes y binario",lead:"El ordenador solo entiende dos valores: 0 y 1. Todo lo demás se construye con ellos.",
+body:`<p>Un <b>bit</b> es un 0 o un 1. Ocho bits forman un <b>byte</b>, que puede guardar una letra.</p>
+<div class="wrap"><table><tr><th>Unidad</th><th>Equivale a</th><th>Ejemplo</th></tr>
+<tr><td>1 KB</td><td>1024 bytes</td><td>Un texto corto</td></tr>
+<tr><td>1 MB</td><td>1024 KB</td><td>Una canción en MP3 (unos 4 MB)</td></tr>
+<tr><td>1 GB</td><td>1024 MB</td><td>Una película en HD (1-4 GB)</td></tr>
+<tr><td>1 TB</td><td>1024 GB</td><td>Un disco duro externo</td></tr></table></div>
+<h3>De decimal a binario</h3>
+<p>Los pesos de cada posición son 128, 64, 32, 16, 8, 4, 2, 1. Por ejemplo, <code>13 = 8 + 4 + 1 = 00001101</code>.</p>
+<p>Prueba con un número del 0 al 255:</p>
+<input type="text" id="dec" inputmode="numeric" placeholder="Ej.: 13" autocomplete="off">
+<p class="fb" id="binout"></p>`,
+q:"¿Cuántos bits tiene un byte?",o:["4","8","1024"],a:1,
+init(){const d=document.getElementById('dec'),o=document.getElementById('binout');d.addEventListener('input',()=>{const n=parseInt(d.value,10);o.textContent=(isNaN(n)||n<0||n>255)?(d.value?"Escribe un número entre 0 y 255":""):n+" en binario es "+n.toString(2).padStart(8,"0")})}},
+
+{t:"Dentro del ordenador",lead:"Las piezas que verías si abrieses la torre y qué hace cada una.",
+body:`<div class="wrap"><table><tr><th>Componente</th><th>Función</th></tr>
+<tr><td>Placa base</td><td>Conecta todas las piezas entre sí</td></tr>
+<tr><td>Microprocesador</td><td>Ejecuta las instrucciones de los programas</td></tr>
+<tr><td>Ventilador o disipador</td><td>Evita que el procesador se caliente</td></tr>
+<tr><td>Módulos de RAM</td><td>Memoria rápida y temporal</td></tr>
+<tr><td>Disco SSD o HDD</td><td>Guarda sistema y archivos. El SSD es más rápido</td></tr>
+<tr><td>Fuente de alimentación</td><td>Convierte la corriente de la pared en la que usa el PC</td></tr>
+<tr><td>Tarjeta gráfica</td><td>Genera la imagen. Útil en juegos y diseño</td></tr></table></div>
+<h3>Seguridad al manipular</h3>
+<ul><li>Desenchufa el equipo antes de abrirlo.</li>
+<li>Toca una parte metálica de la caja para descargar la electricidad estática.</li>
+<li>No fuerces las piezas: cada conector solo entra en una posición.</li></ul>`,
+q:"¿Qué componente conecta entre sí todas las piezas del PC?",o:["La fuente de alimentación","La placa base","El disco duro"],a:1},
+
+{t:"Procesador de textos",lead:"Word, Writer o Google Docs: un buen documento se nota en el formato.",
+body:`<h3>Lo esencial</h3>
+<ul><li><b>Fuente y tamaño:</b> para el cuerpo, 11 o 12 puntos y una letra legible.</li>
+<li><b>Negrita, cursiva, subrayado:</b> <kbd>Ctrl</kbd>+<kbd>N</kbd>, <kbd>Ctrl</kbd>+<kbd>K</kbd>, <kbd>Ctrl</kbd>+<kbd>S</kbd> en Word en español.</li>
+<li><b>Alineación:</b> izquierda, centrada, derecha o justificada.</li>
+<li><b>Viñetas y numeración</b> para listas.</li>
+<li><b>Corrector ortográfico:</b> subraya en rojo los posibles fallos. Revísalo antes de entregar.</li></ul>
+<h3>Usa estilos, no tamaños a mano</h3>
+<p>Aplica <mark>Título 1</mark>, <mark>Título 2</mark>… a tus encabezados. Así puedes generar un índice automático y cambiar el aspecto de todo el documento de una vez.</p>
+<h3>Estructura de un trabajo</h3>
+<ol><li>Portada con título, tu nombre y la fecha.</li><li>Índice.</li><li>Desarrollo con apartados.</li><li>Conclusión y fuentes consultadas.</li></ol>`,
+q:"¿Para qué sirve aplicar estilos de título?",o:["Para que el texto sea más grande solamente","Para crear un índice automático y cambiar el formato de golpe","Para corregir faltas de ortografía"],a:1},
+
+{t:"Hoja de cálculo",lead:"Excel, Calc o Google Sheets: una tabla que hace las cuentas por ti.",
+body:`<p>Una hoja se divide en <b>columnas</b> (A, B, C…) y <b>filas</b> (1, 2, 3…). Cada cruce es una <b>celda</b>, con nombre como <code>B3</code>.</p>
+<h3>Fórmulas</h3>
+<p>Toda fórmula empieza por <code>=</code>.</p>
+<div class="wrap"><table><tr><th>Fórmula</th><th>Resultado</th></tr>
+<tr><td><code>=B2+B3</code></td><td>Suma dos celdas</td></tr>
+<tr><td><code>=SUMA(B2:B10)</code></td><td>Suma un rango de celdas</td></tr>
+<tr><td><code>=PROMEDIO(B2:B10)</code></td><td>Media aritmética</td></tr>
+<tr><td><code>=MAX(B2:B10)</code> / <code>=MIN(B2:B10)</code></td><td>Valor mayor / menor</td></tr>
+<tr><td><code>=SI(B2>=5;"Aprobado";"Suspenso")</code></td><td>Elige un resultado según una condición</td></tr></table></div>
+<div class="tip">Si cambias un número de la tabla, las fórmulas se recalculan solas. Esa es la gran ventaja frente a hacerlo con calculadora.</div>
+<p>En algunas versiones se separa con coma en lugar de punto y coma.</p>`,
+q:"¿Con qué símbolo debe empezar una fórmula?",o:["#","=","@"],a:1},
+
+{t:"Correo electrónico",lead:"Escribir un buen correo es una habilidad que te piden en cualquier trabajo.",
+body:`<h3>Campos del mensaje</h3>
+<ul><li><b>Para:</b> destinatario principal.</li>
+<li><b>CC:</b> copia visible. Todos ven a quién más se lo enviaste.</li>
+<li><b>CCO:</b> copia oculta. Úsala si envías a muchas personas que no se conocen.</li>
+<li><b>Asunto:</b> resume el tema en pocas palabras.</li>
+<li><b>Adjuntos:</b> archivos que acompañan el mensaje.</li></ul>
+<h3>Cómo redactarlo</h3>
+<ol><li>Saludo: «Buenos días, Ana:».</li>
+<li>Motivo claro en una o dos frases.</li>
+<li>Despedida y tu nombre.</li></ol>
+<div class="tip">Antes de enviar, comprueba destinatario, asunto y que has adjuntado el archivo. Si escribes «adjunto», adjunta de verdad.</div>
+<h3>Ojo con los correos falsos</h3>
+<p>Desconfía de mensajes que te meten prisa, piden tus claves o traen enlaces raros. Se llama <mark>phishing</mark>.</p>`,
+q:"Quieres enviar un aviso a 30 personas sin mostrar sus direcciones. ¿Qué campo usas?",o:["CC","CCO","Asunto"],a:1},
+
+{t:"Redes y wifi",lead:"Qué pasa cuando conectas tu móvil o tu PC a internet.",
+body:`<ul><li><b>Red:</b> varios dispositivos conectados para compartir información.</li>
+<li><b>Router:</b> reparte la conexión a internet entre todos los dispositivos de casa.</li>
+<li><b>Dirección IP:</b> número que identifica a cada dispositivo en la red, por ejemplo <code>192.168.1.20</code>.</li>
+<li><b>Cable Ethernet:</b> más estable y rápido. <b>Wifi:</b> más cómodo, pero depende de la distancia y las paredes.</li>
+<li><b>LAN:</b> red local (tu casa o el aula). <b>Internet:</b> la red de redes.</li></ul>
+<h3>Si no hay conexión, revisa en orden</h3>
+<ol><li>¿Está activado el wifi o el cable bien enchufado?</li>
+<li>¿Funciona internet en otro dispositivo?</li>
+<li>Reinicia el router: desenchúfalo 30 segundos.</li>
+<li>Si sigue fallando, contacta con tu operador.</li></ol>
+<div class="tip">En redes wifi públicas evita entrar en el banco o escribir contraseñas importantes.</div>`,
+q:"¿Qué dispositivo reparte internet entre los aparatos de tu casa?",o:["El router","La tarjeta gráfica","El monitor"],a:0},
+
+{t:"Seguridad informática",lead:"Protegerte no es difícil si sigues unos pocos hábitos.",
+body:`<h3>Amenazas comunes</h3>
+<ul><li><b>Virus:</b> programa que se copia y daña archivos.</li>
+<li><b>Ransomware:</b> bloquea tus archivos y pide dinero.</li>
+<li><b>Phishing:</b> engaño para que entregues tus datos.</li>
+<li><b>Spyware:</b> te espía sin que lo notes.</li></ul>
+<h3>Hábitos que te protegen</h3>
+<ol><li>Mantén sistema y aplicaciones actualizados.</li>
+<li>Usa antivirus y no desactives el cortafuegos.</li>
+<li>Descarga programas solo de sitios oficiales.</li>
+<li>No abras adjuntos ni enlaces de remitentes desconocidos.</li>
+<li>Haz copias de seguridad, la mejor defensa contra el ransomware.</li></ol>
+<div class="tip">Ley de oro: si algo suena demasiado bueno para ser verdad («has ganado un móvil»), es una trampa.</div>
+<p>En Europa, además, existe una ley que protege tus datos personales: el <b>RGPD</b>.</p>`,
+q:"¿Qué protege mejor tus datos frente al ransomware?",o:["Tener copias de seguridad","Apagar el monitor","Usar fondo de pantalla oscuro"],a:0},
+
+{t:"Sistemas operativos",lead:"El programa que manda en el ordenador: sin él, ninguna otra aplicación podría funcionar.",
+body:`<h3>Qué hace un sistema operativo</h3>
+<ul><li>Gestiona los <b>archivos</b> y las carpetas.</li>
+<li>Reparte la <b>memoria RAM</b> y el procesador entre los programas.</li>
+<li>Controla los <b>periféricos</b>: teclado, ratón, impresora.</li>
+<li>Muestra la interfaz con la que interactúas.</li></ul>
+<div class="wrap"><table><tr><th>Sistema</th><th>Dónde se usa</th></tr>
+<tr><td>Windows</td><td>La mayoría de PC de sobremesa y portátiles</td></tr>
+<tr><td>macOS</td><td>Ordenadores de Apple</td></tr>
+<tr><td>Linux</td><td>Servidores y ordenadores personales, y es gratuito</td></tr>
+<tr><td>Android / iOS</td><td>Móviles y tablets</td></tr></table></div>
+<h3>El escritorio de Windows</h3>
+<ul><li><b>Menú Inicio:</b> abre programas y ajustes.</li>
+<li><b>Barra de tareas:</b> muestra los programas abiertos.</li>
+<li><b>Administrador de tareas:</b> <kbd>Ctrl</kbd>+<kbd>Mayús</kbd>+<kbd>Esc</kbd>. Sirve para cerrar un programa bloqueado.</li></ul>
+<div class="tip">Instala solo programas de sitios oficiales y desinstala los que ya no uses para liberar espacio.</div>`,
+q:"¿Qué sistema operativo es gratuito y muy usado en servidores?",o:["Linux","macOS","iOS"],a:0},
+
+{t:"Presentaciones",lead:"PowerPoint, Impress o Google Slides: una buena presentación apoya lo que dices, no lo sustituye.",
+body:`<h3>Reglas para diapositivas claras</h3>
+<ul><li><b>Una idea por diapositiva.</b></li>
+<li>Poco texto: frases cortas y viñetas, no párrafos.</li>
+<li>Letra grande, de unos <mark>24 puntos o más</mark>.</li>
+<li>Buen contraste entre texto y fondo.</li>
+<li>Imágenes relacionadas con el tema, no decorativas.</li></ul>
+<h3>Estructura</h3>
+<ol><li>Portada con título y tu nombre.</li><li>Índice o esquema.</li><li>Desarrollo, una idea por diapositiva.</li><li>Conclusiones y fuentes.</li></ol>
+<h3>Al exponer</h3>
+<ul><li>Habla mirando al público, no a la pantalla.</li>
+<li>Ensaya antes y cronometra el tiempo.</li>
+<li>Para iniciar la presentación, pulsa <kbd>F5</kbd>.</li></ul>`,
+q:"¿Cuántas ideas conviene poner en cada diapositiva?",o:["Una","Todas las del tema","Cinco párrafos"],a:0},
+
+{t:"La nube y el trabajo en equipo",lead:"Tus archivos accesibles desde cualquier sitio y editables entre varias personas a la vez.",
+body:`<p>La <b>nube</b> son servidores en internet donde se guardan tus archivos. Ejemplos: Google Drive, OneDrive y Dropbox.</p>
+<div class="wrap"><table><tr><th>Ventajas</th><th>Inconvenientes</th></tr>
+<tr><td>Accedes desde cualquier dispositivo</td><td>Necesitas conexión a internet</td></tr>
+<tr><td>Sirve como copia de seguridad</td><td>Depende de la seguridad de tu cuenta</td></tr>
+<tr><td>Puedes compartir con un enlace</td><td>El espacio gratuito es limitado</td></tr></table></div>
+<h3>Permisos al compartir</h3>
+<ul><li><b>Lector:</b> solo puede ver.</li>
+<li><b>Comentarista:</b> puede ver y comentar.</li>
+<li><b>Editor:</b> puede cambiar el documento.</li></ul>
+<div class="tip">Da a cada persona el permiso mínimo que necesita. Con «Editor» cualquiera puede borrar tu trabajo.</div>
+<p>Los documentos en línea guardan el historial de versiones, así que puedes recuperar una anterior si alguien se equivoca.</p>`,
+q:"Quieres que tus compañeros lean tu documento pero no lo cambien. ¿Qué permiso les das?",o:["Editor","Lector","Propietario"],a:1},
+
+{t:"Mantenimiento y problemas típicos",lead:"Antes de llamar al técnico, hay cosas sencillas que puedes revisar tú mismo.",
+body:`<h3>El ordenador va lento</h3>
+<ol><li>Reinícialo. Es lo primero y resuelve muchos fallos.</li>
+<li>Cierra programas y pestañas que no uses.</li>
+<li>Comprueba que queda espacio libre en el disco.</li>
+<li>Desinstala programas que no necesitas.</li>
+<li>Pasa el antivirus.</li></ol>
+<h3>No enciende o no hay imagen</h3>
+<ul><li>¿Está enchufado y el interruptor de la regleta activado?</li>
+<li>¿El cable del monitor está bien conectado?</li>
+<li>¿El monitor está encendido y en la entrada correcta?</li></ul>
+<h3>Mantenimiento preventivo</h3>
+<ul><li>Limpia el polvo de ventiladores y rejillas (con el equipo apagado y desenchufado).</li>
+<li>Mantén el sistema actualizado.</li>
+<li>Haz copias de seguridad de forma periódica.</li></ul>
+<div class="tip">Ante un error, apunta el mensaje exacto o haz una captura de pantalla. Te ayudará a encontrar la solución.</div>`,
+q:"¿Qué es lo primero que conviene probar cuando un equipo se comporta raro?",o:["Formatear el disco","Reiniciarlo","Comprar otro"],a:1},
+
+{t:"Identidad digital y buen uso",lead:"Lo que publicas deja rastro. Aprende a cuidarte y a cuidar a los demás.",
+body:`<h3>Tu huella digital</h3>
+<p>Todo lo que compartes en internet (fotos, comentarios, likes) forma tu <mark>huella digital</mark>. Puede verla mucha gente y es difícil de borrar del todo.</p>
+<ul><li>Revisa la privacidad de tus perfiles en redes sociales.</li>
+<li>No publiques tu dirección, teléfono ni datos de otras personas.</li>
+<li>Piensa antes de subir una foto: ¿me parecerá bien dentro de unos años?</li></ul>
+<h3>Netiqueta: buenas maneras en la red</h3>
+<ul><li>Trata a los demás como en persona.</li>
+<li>Escribir todo en mayúsculas equivale a gritar.</li>
+<li>Pide permiso antes de etiquetar o publicar fotos de otros.</li></ul>
+<h3>Si sufres ciberacoso</h3>
+<ol><li>No respondas a las provocaciones.</li>
+<li>Guarda capturas como prueba.</li>
+<li>Bloquea y denuncia al usuario en la plataforma.</li>
+<li>Cuéntalo a un adulto de confianza o a tu tutor o tutora.</li></ol>
+<h3>Información fiable</h3>
+<p>Antes de creer o compartir una noticia, comprueba quién la publica, si otras fuentes serias la cuentan y la fecha. Además, las imágenes y textos de internet tienen derechos de autor, salvo que su licencia (como Creative Commons) permita usarlos.</p>`,
+q:"Alguien te acosa por redes sociales. ¿Qué es lo más recomendable?",o:["Responder con insultos","Guardar pruebas y contarlo a un adulto de confianza","Borrar tu cuenta y no decir nada"],a:1}
+];
+const nav=document.getElementById('nav'),art=document.getElementById('lesson'),done=new Set();let cur=0;
+function drawNav(){nav.innerHTML="";document.getElementById('pbar').style.width=done.size/L.length*100+"%";document.getElementById('ptxt').textContent=done.size+" de "+L.length+" lecciones completadas";L.forEach((l,i)=>{const b=document.createElement('button');b.type="button";b.innerHTML='<span class="n">'+(i+1)+'</span><span>'+l.t+'</span>';if(i===cur)b.setAttribute('aria-current','true');if(done.has(i))b.className="done";b.onclick=()=>show(i);nav.appendChild(b)})}
+function show(i){cur=i;const l=L[i];
+art.innerHTML=`<h2>${l.t}</h2><p class="lead">${l.lead}</p>${l.body}
+<div class="quiz"><h3>Comprueba lo aprendido</h3><p>${l.q}</p><div id="opts"></div><div class="fb" id="fb"></div></div>
+<div class="pager"><button class="btn alt" id="prev" type="button" ${i===0?"disabled style='visibility:hidden'":""}>Anterior</button>
+<button class="btn" id="next" type="button" ${i===L.length-1?"disabled style='visibility:hidden'":""}>Siguiente lección</button></div>`;
+const box=document.getElementById('opts'),fb=document.getElementById('fb');
+l.o.forEach((txt,k)=>{const b=document.createElement('button');b.className="opt";b.type="button";b.textContent=txt;
+b.onclick=e=>{[...box.children].forEach(c=>c.disabled=true);if(k===l.a){b.classList.add('ok');fb.textContent="¡Correcto!";fb.style.color="var(--ok)";done.add(i);drawNav();confetti(e.clientX,e.clientY);if(done.size===L.length){fb.textContent="¡Correcto! Has completado todas las lecciones.";setTimeout(()=>confetti(innerWidth/2,innerHeight/2),500)}}else{b.classList.add('bad','shake');box.children[l.a].classList.add('ok');fb.textContent="No es esa. La correcta está marcada en verde.";fb.style.color="var(--bad)"}};box.appendChild(b)});
+document.getElementById('prev').onclick=()=>show(i-1);document.getElementById('next').onclick=()=>show(i+1);
+if(l.init)l.init();[...art.children].forEach((el,k)=>{el.style.animation="in .45s ease both";el.style.animationDelay=k*70+"ms"});drawNav();window.scrollTo({top:0})}
+const tb=document.getElementById('theme');
+tb.onclick=()=>{const r=document.documentElement,dark=getComputedStyle(r).getPropertyValue('--bg').trim()==="#121a2c";r.setAttribute('data-theme',dark?'light':'dark');tb.textContent=dark?"Modo oscuro":"Modo claro"};
+if(matchMedia('(prefers-color-scheme: dark)').matches)tb.textContent="Modo claro";
+const calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function confetti(px,py){if(calm)return;const c=document.createElement('canvas');c.style.cssText="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:99";c.width=innerWidth;c.height=innerHeight;document.body.appendChild(c);const x=c.getContext('2d'),cl=["#5b3bff","#ffe27a","#00c48c","#ff2d87","#00d4ff"];
+const p=Array.from({length:100},()=>({x:px,y:py,vx:(Math.random()-.5)*14,vy:-Math.random()*13-3,s:5+Math.random()*6,c:cl[Math.random()*5|0],r:Math.random()*6}));let n=0;
+(function f(){x.clearRect(0,0,c.width,c.height);p.forEach(q=>{q.vy+=.35;q.x+=q.vx;q.y+=q.vy;q.r+=.2;x.save();x.translate(q.x,q.y);x.rotate(q.r);x.fillStyle=q.c;x.fillRect(-q.s/2,-q.s/2,q.s,q.s*.6);x.restore()});if(++n<110)requestAnimationFrame(f);else c.remove()})()}
+(()=>{if(calm)return;const c=document.getElementById('rain'),x=c.getContext('2d'),fs=18;let w,h,cols,d;
+function size(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;cols=Math.floor(w/fs);d=Array.from({length:cols},()=>Math.random()*h/fs)}
+size();addEventListener('resize',size);let last=0;
+function f(t){requestAnimationFrame(f);if(t-last<80)return;last=t;x.clearRect(0,0,w,h);x.font=fs+"px monospace";
+for(let i=0;i<cols;i+=2){for(let k=0;k<6;k++){x.globalAlpha=1-k/6;x.fillStyle=i%6==0?"#ffe27a":"#9fb4ff";x.fillText(Math.random()<.5?"0":"1",i*fs,(d[i]-k)*fs)}
+if(d[i]*fs>h&&Math.random()>.95)d[i]=0;d[i]++}x.globalAlpha=1}
+requestAnimationFrame(f)})();
+(()=>{const g=document.getElementById('gate');
+let seen=false;try{seen=sessionStorage.getItem('verified')==='1'}catch(e){}
+if(seen){g.style.display="none";return}
+const pz=document.getElementById('pz'),pc=document.getElementById('piece'),r=document.getElementById('prange'),msg=document.getElementById('gmsg'),P=56;
+let W,hx,busy=false;
+function setup(){W=pz.offsetWidth;hx=Math.round(W*.45+Math.random()*(W*.55-P-8));
+pz.style.setProperty('--w',W+'px');pz.style.setProperty('--h','160px');pz.style.setProperty('--hx',hx+'px');pz.style.setProperty('--py','52px');pz.style.setProperty('--a',Math.floor(Math.random()*360)+'deg');
+r.max=W-P;r.value=0;pc.style.left="0px"}
+r.oninput=()=>{if(!busy)pc.style.left=r.value+"px"};
+r.onchange=()=>{if(busy)return;const v=+r.value;
+if(Math.abs(v-hx)<=6){busy=true;pc.style.left=hx+"px";r.disabled=true;msg.textContent="¡Puzle resuelto!";msg.className="gmsg ok";try{sessionStorage.setItem('verified','1')}catch(e){}setTimeout(()=>{g.classList.add('out');document.body.style.overflow=""},900)}
+else{msg.textContent="Casi. Inténtalo de nuevo.";pc.style.transition="left .3s";pc.style.left="0px";r.value=0;setTimeout(()=>{pc.style.transition="";msg.textContent=""},700)}};
+document.body.style.overflow="hidden";setup();addEventListener('resize',()=>{if(!busy&&pz.offsetWidth!==W)setup()});})();
+const Snd=(()=>{let ctx,master,mg,fxOn=true,musicOn=true,timer=null,nextT=0,step=0,last=null;
+const E=.32,CH=[[57,60,64],[53,57,60],[48,52,55],[55,59,62]],PENT=[0,2,4,7,9],mf=m=>440*Math.pow(2,(m-69)/12);
+function init(){if(ctx)return;ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=.55;master.connect(ctx.destination);mg=ctx.createGain();mg.gain.value=0;mg.connect(master)}
+function tone(f,t,d,type,v,dest){const o=ctx.createOscillator(),g=ctx.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(v,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(dest||master);o.start(t);o.stop(t+d+.05)}
+function sweep(f1,f2,t,d,v,type){const o=ctx.createOscillator(),g=ctx.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f1,t);o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.05)}
+const FX={
+click:t=>tone(520,t,.07,'square',.1),
+hover:t=>tone(1200,t,.03,'sine',.04),
+tick:t=>tone(900,t,.03,'triangle',.07),
+key:t=>tone(700+Math.random()*200,t,.04,'square',.05),
+page:t=>sweep(320,900,t,.16,.14),
+ok:t=>[523,659,784,1047].forEach((f,i)=>tone(f,t+i*.08,.18,'triangle',.2)),
+bad:t=>sweep(240,120,t,.3,.18,'sawtooth'),
+toggle:t=>{tone(440,t,.08,'sine',.18);tone(660,t+.08,.1,'sine',.18)},
+win:t=>[523,659,784,1047,784,1047,1319].forEach((f,i)=>tone(f,t+i*.11,.26,'triangle',.22))};
+function play(n){if(!fxOn||!ctx)return;FX[n](ctx.currentTime)}
+function sched(){while(nextT<ctx.currentTime+.6){const bar=Math.floor(step/8)%4,i=step%8,c=CH[bar];
+if(i===0){tone(mf(c[0]-24),nextT,E*7,'triangle',.5,mg);c.forEach(n=>tone(mf(n),nextT,E*8,'sine',.12,mg))}
+tone(mf(c[[0,1,2,1,0,1,2,1][i]]+12),nextT,E*.9,'triangle',.32,mg);
+if(i%4===2&&Math.random()<.55)tone(mf(72+PENT[Math.random()*5|0]+(Math.random()<.4?12:0)),nextT,.55,'sine',.2,mg);
+nextT+=E;step++}}
+function startMusic(){if(timer||!ctx)return;nextT=ctx.currentTime+.1;mg.gain.setTargetAtTime(.16,ctx.currentTime,.3);timer=setInterval(sched,150)}
+function stopMusic(){if(timer){clearInterval(timer);timer=null}if(ctx)mg.gain.setTargetAtTime(0,ctx.currentTime,.08)}
+function unlock(){init();if(ctx.state!=='running')ctx.resume();if(musicOn)startMusic()}
+['pointerdown','keydown','touchstart'].forEach(ev=>addEventListener(ev,unlock,{passive:true}));
+document.addEventListener('visibilitychange',()=>{if(!ctx)return;if(document.hidden)ctx.suspend();else if(musicOn||fxOn)ctx.resume()});
+const bm=document.getElementById('bmus'),bf=document.getElementById('bfx');
+function paint(){bm.setAttribute('aria-pressed',musicOn);bm.textContent=(musicOn?'🎵':'🔇')+' Música';bf.setAttribute('aria-pressed',fxOn);bf.textContent=(fxOn?'🔊':'🔇')+' Sonidos'}
+bm.onclick=()=>{musicOn=!musicOn;if(musicOn){unlock()}else stopMusic();paint();play('toggle')};
+bf.onclick=()=>{fxOn=!fxOn;paint();init();if(ctx.state!=='running')ctx.resume();play('toggle')};
+paint();
+// Sonidos por toda la web
+document.addEventListener('click',e=>{const t=e.target;
+const o=t.closest('.opt');if(o){play(o.classList.contains('ok')?'ok':'bad');if(o.classList.contains('ok')&&done.size===L.length)setTimeout(()=>play('win'),450);return}
+if(t.closest('.sndbar'))return;
+if(t.closest('.theme')){play('toggle');return}
+if(t.closest('nav button,#next,#prev')){play('page');return}
+if(t.closest('button,a,.icard'))play('click')});
+document.addEventListener('pointerover',e=>{if(e.pointerType!=='mouse')return;const t=e.target.closest('nav button,.btn,.opt,.icard,.hinfo,.theme,kbd,.sndbar button');if(t!==last){last=t;if(t)play('hover')}});
+document.addEventListener('input',e=>{if(e.target.matches&&e.target.matches('#pw,#dec'))play('key')});
+const r=document.getElementById('prange');let lt=-99;
+r.addEventListener('input',()=>{const v=+r.value;if(Math.abs(v-lt)>=8){lt=v;play('tick')}});
+r.addEventListener('change',()=>play(r.disabled?'win':'bad'));
+return{play}})();
+show(0);
+</script>
+</body>
+</html>
